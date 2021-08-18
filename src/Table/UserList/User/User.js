@@ -1,14 +1,13 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Remove } from "../../../store/action";
+import { remove } from "../../../store/action";
 
 export function User(props) {
   const { id } = props;
   const userById = useSelector((state) => state.User.userById[id]);
-  // console.log(userById);
   const dispatch = useDispatch();
   const handleRemove = (id) => {
-    dispatch(Remove(id));
+    dispatch(remove(id));
   };
   if (userById === undefined) return <> </>;
   else {

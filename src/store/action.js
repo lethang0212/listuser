@@ -1,11 +1,17 @@
-export const Add = (name) => {
+export const add = (name) => {
   return {
     type: "ADD_USER",
     payload: name,
   };
 };
 
-export const Remove = (id) => {
+export const submit = () => {
+  return {
+    type: "SUBMIT_USER",
+  }
+}
+
+export const remove = (id) => {
   return {
     type: "REMOVE_USER",
     payload: id,

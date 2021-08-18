@@ -4,17 +4,8 @@ import { User } from "./User/User";
 
 export function UserList() {
   const users = useSelector((state) => state.User.userIds);
-  console.log("helo");
   return (
     <>
-      <table className="table table-bordered">
-        <thead>
-          <tr>
-            <th>id</th>
-            <th>Name</th>
-            <th>Action</th>
-          </tr>
-        </thead>
         <tbody>
           {users.map((user) => (
             <tr key={user}>
@@ -22,7 +13,6 @@ export function UserList() {
             </tr>
           ))}
         </tbody>
-      </table>
     </>
   );
 }

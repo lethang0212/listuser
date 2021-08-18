@@ -1,8 +1,8 @@
 import React from "react";
 import { Provider } from "react-redux";
 import { UserAdd } from "./applications/UserAdd/UserAdd";
-import { UserList } from "./applications/UserList/UserList";
 import { store } from "./store";
+import { Table } from "./Table/Table";
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       <Provider store={store}>
         <UserAdd />
         <br /> <br />
-        <UserList />
+        <Table />
       </Provider>
     </>
   );

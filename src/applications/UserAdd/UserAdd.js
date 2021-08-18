@@ -1,26 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
-import { Add } from "../../store/action";
+import { submit } from "../../store/action";
+import { UserInput } from "./UserInput/UserInput";
 
 export function UserAdd() {
   const dispatch = useDispatch();
-  const [name, setName] = useState("");
-  const handleAdd = () => {
-    dispatch(Add(name));
+  const handleSubmit = () => {
+    dispatch(submit());
   };
   return (
     <div>
       <form>
         <div className="form-group">
           <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Enter name"
-            onChange={(e) => setName(e.target.value)}
-          />
+          <UserInput />
         </div>
-        <button type="button" className="btn btn-primary" onClick={handleAdd}>
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={handleSubmit}
+        >
           Submit
         </button>
       </form>
