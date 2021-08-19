@@ -1,17 +1,21 @@
-import React from 'react';
-import { UserList } from './UserList/UserList';
+import React from "react";
+import { UserList } from "./UserList/UserList";
+import { ListBeforeSortId } from "./ListBeforeSortId/ListBeforeSortId";
+import { ListBeforeSortName } from "./ListBeforeSortName/ListBeforeSortName";
 
 export function Table() {
-    return <>
-        <table className="table table-bordered">
+  return (
+    <>
+      <table className="table table-bordered">
         <thead>
           <tr>
-            <th>id</th>
-            <th>Name</th>
+            <ListBeforeSortId />
+            <ListBeforeSortName />
             <th>Action</th>
           </tr>
         </thead>
-        <UserList/>
+        <UserList />
       </table>
     </>
+  );
 }
