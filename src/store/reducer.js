@@ -24,28 +24,41 @@ function User(state = STATE, action) {
         userById: { ...state.userById, [id]: newUsersById },
       };
     case "SORT_ID":
-      const idAfterSortId = [...state.userIds].sort();
+      const newUserBySortId = { ...state.userById };
+      const convertObjToArrId = Object.values(newUserBySortId);
+      convertObjToArrId.sort((a, b) =>
+        a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+      );
+      const idAfterSortId = [];
+      convertObjToArrId.map((item) => idAfterSortId.push(item.id));
       return { ...state, userIds: idAfterSortId };
     case "REVERSE_ID":
-      const idAfterReverseId = [...state.userIds].sort().reverse();
+      const newUserByReverseId = { ...state.userById };
+      const convertObjToArrId1 = Object.values(newUserByReverseId);
+      convertObjToArrId1.sort((a, b) =>
+        a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+      );
+      const idAfterReverseId = [];
+      convertObjToArrId1.map((item) => idAfterReverseId.push(item.id));
+      idAfterReverseId.reverse();
       return { ...state, userIds: idAfterReverseId };
     case "SORT_NAME":
-      const newUserBySort = { ...state.userById };
-      const convertObjToArr = Object.values(newUserBySort);
-      convertObjToArr.sort((a, b) =>
+      const newUserBySortName = { ...state.userById };
+      const convertObjToArrName = Object.values(newUserBySortName);
+      convertObjToArrName.sort((a, b) =>
         a.name > b.name ? 1 : b.name > a.name ? -1 : 0
       );
       const idAfterSortName = [];
-      convertObjToArr.map((item) => idAfterSortName.push(item.id));
+      convertObjToArrName.map((item) => idAfterSortName.push(item.id));
       return { ...state, userIds: idAfterSortName };
     case "REVERSE_NAME":
-      const newUserByReverse = { ...state.userById };
-      const convertObjToArr1 = Object.values(newUserByReverse);
-      convertObjToArr1.sort((a, b) =>
+      const newUserByReverseName = { ...state.userById };
+      const convertObjToArrName1 = Object.values(newUserByReverseName);
+      convertObjToArrName1.sort((a, b) =>
         a.name > b.name ? 1 : b.name > a.name ? -1 : 0
       );
       const idAfterReverseName = [];
-      convertObjToArr1.map((item) => idAfterReverseName.push(item.id));
+      convertObjToArrName1.map((item) => idAfterReverseName.push(item.id));
       idAfterReverseName.reverse();
       return { ...state, userIds: idAfterReverseName };
     case "REMOVE_USER":
