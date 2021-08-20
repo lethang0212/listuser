@@ -1,3 +1,4 @@
+
 export const add = (name) => {
   return {
     type: "ADD_USER",
@@ -11,25 +12,25 @@ export const submit = () => {
   };
 };
 
-export const sort_id = () => {
+export const sortId = () => {
   return {
     type: "SORT_ID",
   };
 };
 
-export const reverse_id = () => {
+export const reverseId = () => {
   return {
     type: "REVERSE_ID",
   };
 };
 
-export const sort_name = () => {
+export const sortName = () => {
   return {
     type: "SORT_NAME",
   };
 };
 
-export const reverse_name = () => {
+export const reverseName = () => {
   return {
     type: "REVERSE_NAME",
   };

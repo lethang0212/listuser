@@ -1,20 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { reverse_name, sort_name } from "../../store/action";
+import { reverseName, sortName } from "../../store/action";
 
 export function ListBeforeSortName() {
+  const [sumName, setSumName] = useState(0);
   const dispatch = useDispatch();
-  const handleSort = () => {
-    dispatch(sort_name());
-  };
-  const handleReverse = () => {
-    dispatch(reverse_name());
+  function count(a) {
+    return a + 1;
+  }
+  const check = () => {
+    if (sumName % 2 === 0) {
+      dispatch(sortName());
+    } else {
+      dispatch(reverseName());
+    }
   };
   return (
     <>
       <th>
-        <button onClick={handleSort}>sort name</button>
-        <button onClick={handleReverse}>reverse name</button>
+        <button
+          id="id"
+          onClick={() => {
+            setSumName(count(sumName));
+            check();
+          }}
+        >
+          Id
+        </button>
       </th>
     </>
   );

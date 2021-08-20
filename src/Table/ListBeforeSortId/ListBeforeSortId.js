@@ -1,20 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { reverse_id, sort_id } from "../../store/action";
+import { reverseId, sortId } from "../../store/action";
 
 export function ListBeforeSortId() {
+  const [sumId, setSumId] = useState(1);
   const dispatch = useDispatch();
-  const handleSortId = () => {
-    dispatch(sort_id());
-  };
-  const handleReverseId = () => {
-    dispatch(reverse_id());
+  function count(a) {
+    return a + 1;
+  }
+  const check = () => {
+    if (sumId % 2 === 0) {
+      dispatch(sortId());
+    } else {
+      dispatch(reverseId());
+    }
   };
   return (
     <>
       <th>
-        <button onClick={handleSortId}>sort id</button>
-        <button onClick={handleReverseId}>reverse id</button>
+        <button
+          id="id"
+          onClick={() => {
+            setSumId(count(sumId));
+            check();
+          }}
+        >
+          Id
+        </button>
       </th>
     </>
   );

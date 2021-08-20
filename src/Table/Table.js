@@ -8,7 +8,7 @@ export function Table() {
     <>
       <table className="table table-bordered">
         <thead>
-          <tr>
+          <tr id="tr">
             <ListBeforeSortId />
             <ListBeforeSortName />
             <th>Action</th>

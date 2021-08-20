@@ -27,7 +27,7 @@ function User(state = STATE, action) {
       const idAfterSortId = [...state.userIds].sort();
       return { ...state, userIds: idAfterSortId };
     case "REVERSE_ID":
-      const idAfterReverseId = [...state.userIds].reverse();
+      const idAfterReverseId = [...state.userIds].sort().reverse();
       return { ...state, userIds: idAfterReverseId };
     case "SORT_NAME":
       const newUserBySort = { ...state.userById };
