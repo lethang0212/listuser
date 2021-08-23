@@ -23,25 +23,6 @@ function User(state = STATE, action) {
         userIds: newUserIds,
         userById: { ...state.userById, [id]: newUsersById },
       };
-    case "SORT_ID":
-      const newUserBySortId = { ...state.userById };
-      const convertObjToArrId = Object.values(newUserBySortId);
-      convertObjToArrId.sort((a, b) =>
-        a.id > b.id ? 1 : b.id > a.id ? -1 : 0
-      );
-      const idAfterSortId = [];
-      convertObjToArrId.map((item) => idAfterSortId.push(item.id));
-      return { ...state, userIds: idAfterSortId };
-    case "REVERSE_ID":
-      const newUserByReverseId = { ...state.userById };
-      const convertObjToArrId1 = Object.values(newUserByReverseId);
-      convertObjToArrId1.sort((a, b) =>
-        a.id > b.id ? 1 : b.id > a.id ? -1 : 0
-      );
-      const idAfterReverseId = [];
-      convertObjToArrId1.map((item) => idAfterReverseId.push(item.id));
-      idAfterReverseId.reverse();
-      return { ...state, userIds: idAfterReverseId };
     case "SORT_NAME":
       const newUserBySortName = { ...state.userById };
       const convertObjToArrName = Object.values(newUserBySortName);

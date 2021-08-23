@@ -1,4 +1,3 @@
-
 export const add = (name) => {
   return {
     type: "ADD_USER",
@@ -14,13 +13,13 @@ export const submit = () => {
 
 export const sortId = () => {
   return {
-    type: "SORT_ID",
+    type: "SORT_NAME",
   };
 };
 
 export const reverseId = () => {
   return {
-    type: "REVERSE_ID",
+    type: "REVERSE_NAME",
   };
 };
 
