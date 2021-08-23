@@ -13,13 +13,13 @@ export const submit = () => {
 
 export const sortId = () => {
   return {
-    type: "SORT_NAME",
+    type: "SORT_ID",
   };
 };
 
 export const reverseId = () => {
   return {
-    type: "REVERSE_NAME",
+    type: "REVERSE_ID",
   };
 };
 

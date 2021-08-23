@@ -6,6 +6,15 @@ const STATE = {
   userById: {},
 };
 
+const Sort = (obj, key) => {
+  const newObj = { ...obj };
+  const newArr = Object.values(newObj);
+  newArr.sort((a, b) => (a[key] > b[key] ? 1 : b[key] > a[key] ? -1 : 0));
+  const idAfterSort = [];
+  newArr.forEach((item) => idAfterSort.push(item.id));
+  return idAfterSort;
+};
+
 function User(state = STATE, action) {
   switch (action.type) {
     case "ADD_USER":
@@ -23,25 +32,18 @@ function User(state = STATE, action) {
         userIds: newUserIds,
         userById: { ...state.userById, [id]: newUsersById },
       };
+    case "SORT_ID":
+      const newIdBySort = Sort(state.userById, "id");
+      return { ...state, userIds: newIdBySort };
+    case "REVERSE_ID":
+      const newIdbyReverse = Sort(state.userById, "id").reverse();
+      return { ...state, userIds: newIdbyReverse };
     case "SORT_NAME":
-      const newUserBySortName = { ...state.userById };
-      const convertObjToArrName = Object.values(newUserBySortName);
-      convertObjToArrName.sort((a, b) =>
-        a.name > b.name ? 1 : b.name > a.name ? -1 : 0
-      );
-      const idAfterSortName = [];
-      convertObjToArrName.map((item) => idAfterSortName.push(item.id));
-      return { ...state, userIds: idAfterSortName };
+      const newNamebySort = Sort(state.userById, "name");
+      return { ...state, userIds: newNamebySort };
     case "REVERSE_NAME":
-      const newUserByReverseName = { ...state.userById };
-      const convertObjToArrName1 = Object.values(newUserByReverseName);
-      convertObjToArrName1.sort((a, b) =>
-        a.name > b.name ? 1 : b.name > a.name ? -1 : 0
-      );
-      const idAfterReverseName = [];
-      convertObjToArrName1.map((item) => idAfterReverseName.push(item.id));
-      idAfterReverseName.reverse();
-      return { ...state, userIds: idAfterReverseName };
+      const newNamebyReverse = Sort(state.userById, "name").reverse();
+      return { ...state, userIds: newNamebyReverse };
     case "REMOVE_USER":
       delete state.userById[action.payload];
       return { ...state };
