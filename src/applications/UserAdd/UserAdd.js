@@ -12,7 +12,9 @@ export function UserAdd() {
     <div>
       <form>
         <div className="form-group">
-          <label htmlFor="name">Name:</label>
+          <label htmlFor="name">
+            <b>TableListUser</b>
+          </label>
           <UserInput />
         </div>
         <button

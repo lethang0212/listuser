@@ -7,3 +7,21 @@
     background-color: white;
     text-align: left;
 }
+#INPUT {
+    width: 5%;
+}
+#ID {
+    width: 5%;
+}
+#NAME {
+    width: 30%;
+}
+#EMAIL {
+    width: 60%;
+}
+.button {
+    width: 24px;
+    height: 24px;
+    border: white;
+    outline: none;
+}

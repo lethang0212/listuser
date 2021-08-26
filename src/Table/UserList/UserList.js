@@ -6,13 +6,13 @@ export function UserList() {
   const users = useSelector((state) => state.User.userIds);
   return (
     <>
-        <tbody>
-          {users.map((user) => (
-            <tr key={user}>
-              <User id={user} />
-            </tr>
-          ))}
-        </tbody>
+      <tbody>
+        {users.map((user) => (
+          <tr key={user}>
+            <User id={user} />
+          </tr>
+        ))}
+      </tbody>
     </>
   );
 }

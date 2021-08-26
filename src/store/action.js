@@ -1,7 +1,14 @@
-export const add = (name) => {
+export const addName = (name) => {
   return {
     type: "ADD_USER",
     payload: name,
+  };
+};
+
+export const addEmail = (email) => {
+  return {
+    type: "ADD_EMAIL",
+    payload: email,
   };
 };
 
@@ -11,33 +18,29 @@ export const submit = () => {
   };
 };
 
-export const sortId = () => {
-  return {
-    type: "SORT_ID",
-  };
-};
-
-export const reverseId = () => {
-  return {
-    type: "REVERSE_ID",
-  };
-};
-
 export const sortName = () => {
   return {
     type: "SORT_NAME",
   };
 };
 
-export const reverseName = () => {
+export const check = (active, id) => {
   return {
-    type: "REVERSE_NAME",
+    type: "CHECK",
+    active,
+    id,
   };
 };
 
-export const remove = (id) => {
+export const countCheck = (sum) => {
+  return {
+    type: "COUNT",
+    payload: sum,
+  };
+};
+
+export const remove = () => {
   return {
     type: "REMOVE_USER",
-    payload: id,
   };
 };

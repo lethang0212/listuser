@@ -1,9 +1,12 @@
 import { combineReducers } from "redux";
 
-const STATE = {
+const USER = {
   userIds: [],
   nameUser: "",
+  emailUser: "",
   userById: {},
+  listUser: [],
+  count: 0,
 };
 
 const Sort = (obj, key) => {
@@ -15,38 +18,67 @@ const Sort = (obj, key) => {
   return idAfterSort;
 };
 
-function User(state = STATE, action) {
+function User(state = USER, action) {
   switch (action.type) {
     case "ADD_USER":
       state.nameUser = action.payload;
       return { ...state };
+    case "ADD_EMAIL":
+      state.emailUser = action.payload;
+      return { ...state };
     case "SUBMIT_USER":
       const id = state.userIds.length + 1;
+      const check = false;
       const newUserIds = [...state.userIds, id];
       const newUsersById = {
         name: state.nameUser,
+        email: state.emailUser,
         id,
+        check,
       };
+      state.listUser.push(newUsersById);
       return {
-        ...state.userById,
+        ...state,
         userIds: newUserIds,
         userById: { ...state.userById, [id]: newUsersById },
       };
-    case "SORT_ID":
-      const newIdBySort = Sort(state.userById, "id");
-      return { ...state, userIds: newIdBySort };
-    case "REVERSE_ID":
-      const newIdbyReverse = Sort(state.userById, "id").reverse();
-      return { ...state, userIds: newIdbyReverse };
     case "SORT_NAME":
-      const newNamebySort = Sort(state.userById, "name");
-      return { ...state, userIds: newNamebySort };
-    case "REVERSE_NAME":
-      const newNamebyReverse = Sort(state.userById, "name").reverse();
-      return { ...state, userIds: newNamebyReverse };
+      const newNameBySort = Sort(state.userById, "name");
+      return { ...state, userIds: newNameBySort };
+    case "CHECK":
+      const newCheck = action.active;
+      const newId = action.id;
+      const newListUserByCheck = [...state.listUser];
+      newListUserByCheck[newId - 1].check = newCheck;
+      return {
+        ...state,
+        userById: {
+          ...state.userById,
+          [newId]: { ...state.userById[newId], check: newCheck },
+        },
+        listUser: newListUserByCheck,
+      };
+    case "COUNT":
+      return {
+        ...state,
+        count: action.payload,
+      };
     case "REMOVE_USER":
-      delete state.userById[action.payload];
-      return { ...state };
+      const idByRemove = [];
+      const len = state.listUser.length;
+      for (let i = 0; i < len; i++) {
+        if (state.listUser[i].check === true) {
+          idByRemove.push(state.listUser[i].id);
+        }
+      }
+      for (let i = 0; i < idByRemove.length; i++) {
+        delete state.userById[idByRemove[i]];
+      }
+      const idByClone = [...state.userIds];
+      const newIdByRemove = idByClone.filter(
+        (item) => !idByRemove.includes(item)
+      );
+      return { ...state, userIds: newIdByRemove };
     default:
       return state;
   }

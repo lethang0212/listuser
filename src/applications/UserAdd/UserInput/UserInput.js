@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { add } from "../../../store/action";
+import { addEmail, addName } from "../../../store/action";
 
 export function UserInput() {
   const dispatch = useDispatch();
@@ -10,7 +10,13 @@ export function UserInput() {
         type="text"
         className="form-control"
         placeholder="Enter name"
-        onChange={(e) => dispatch(add(e.target.value))}
+        onChange={(e) => dispatch(addName(e.target.value))}
+      />
+      <input
+        type="text"
+        className="form-control"
+        placeholder="Enter email"
+        onChange={(e) => dispatch(addEmail(e.target.value))}
       />
     </>
   );
