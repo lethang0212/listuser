@@ -9,14 +9,14 @@ const USER = {
   count: 0,
 };
 
-const Sort = (obj, key) => {
-  const newObj = { ...obj };
-  const newArr = Object.values(newObj);
-  newArr.sort((a, b) => (a[key] > b[key] ? 1 : b[key] > a[key] ? -1 : 0));
-  const idAfterSort = [];
-  newArr.forEach((item) => idAfterSort.push(item.id));
-  return idAfterSort;
-};
+// const Sort = (obj, key) => {
+//   const newObj = { ...obj };
+//   const newArr = Object.values(newObj);
+//   newArr.sort((a, b) => (a[key] > b[key] ? 1 : b[key] > a[key] ? -1 : 0));
+//   const idAfterSort = [];
+//   newArr.forEach((item) => idAfterSort.push(item.id));
+//   return idAfterSort;
+// };
 
 function User(state = USER, action) {
   switch (action.type) {
@@ -42,9 +42,14 @@ function User(state = USER, action) {
         userIds: newUserIds,
         userById: { ...state.userById, [id]: newUsersById },
       };
-    case "SORT_NAME":
-      const newNameBySort = Sort(state.userById, "name");
-      return { ...state, userIds: newNameBySort };
+    case "SORT":
+      const newObj = { ...state.userById };
+      const newArr = Object.values(newObj);
+      const key = action.payload;
+      newArr.sort((a, b) => (a[key] > b[key] ? 1 : b[key] > a[key] ? -1 : 0));
+      const idAfterSort = [];
+      newArr.forEach((item) => idAfterSort.push(item.id));
+      return { ...state, userIds: idAfterSort };
     case "CHECK":
       const newCheck = action.active;
       const newId = action.id;

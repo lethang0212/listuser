@@ -18,11 +18,6 @@ export const submit = () => {
   };
 };
 
-export const sortName = () => {
-  return {
-    type: "SORT_NAME",
-  };
-};
 
 export const check = (active, id) => {
   return {
